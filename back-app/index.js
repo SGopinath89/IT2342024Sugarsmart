@@ -1,5 +1,6 @@
 require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
+const cors = require('cors');
 const { connectDB }= require('./config/db');
 const userRouter = require("./routes/userRoute");
 const glucoseRouter = require("./routes/glucoseRoute");
@@ -11,6 +12,8 @@ const app = express();
 connectDB();
 
 app.use(express.json());
+
+app.use(cors());
 
 app.use("/api/user",userRouter);
 app.use("/api/glt",glucoseRouter);

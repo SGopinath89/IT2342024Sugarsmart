@@ -9,13 +9,13 @@
 <body>
     <div class="main">
         <h1>SugarSmart</h1>
-        <form action="">
+        <form id="loginForm">
             <label for="first">
                   Username:
             </label>
             <input type="text" 
-                   id="first"
-                   name="first" 
+                   id="username"
+                   name="username" 
                    placeholder="Enter your Username" required>
 
             <label for="password">
@@ -27,8 +27,7 @@
                    placeholder="Enter your Password" required>
 
             <div class="wrap">
-                <button type="submit"
-                        onclick="solve()">
+                <button type="submit">
                     Login
                 </button>
             </div>
@@ -40,5 +39,7 @@
             </a>
         </p>
     </div>
+
+    <script src="login.js"></script>
 </body>
 </html>

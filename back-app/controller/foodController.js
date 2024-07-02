@@ -4,10 +4,7 @@ const Glucose = require('../models/bloodSugar');
 exports.getFoodDetails = async (req, res) => {
     try {
         const { name } = req.params;
-        //console.log(`Searching for food with name: ${name}`);
-        const food = await Food.findOne({ name: { $regex: new RegExp(name, 'i') } });
-        
-        //console.log(`Food found: ${food}`); 
+        const food = await Food.findOne({ name: { $regex: new RegExp(name, 'i') } }); 
 
         if (!food) {
             return res.status(404).json({ msg: 'Food not found' });
