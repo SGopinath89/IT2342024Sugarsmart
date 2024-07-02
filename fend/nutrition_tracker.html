@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Tracker</title>
+    <link rel="stylesheet" href="nt_styles.css">
+</head>
+<body>
+    <div class="header">
+        <button onclick="goBack()">Back</button>
+        <button class="logout" onclick="logout()">Logout</button>
+    </div>
+
+    <h1 style="color: white;">Nutrition Tracker</h1>
+    
+    <div class="container">
+        <form id="nutritionForm">
+        <label for="foodName">Enter the food name:</label>
+        <input type="text" id="foodName" name="foodName" placeholder="Enter food name" required>
+        <button type="submit">Go for it</button>
+        </form>
+        
+        <div id="results" class="results">
+            <!-- Results will be displayed here -->
+        </div>
+    </div>
+
+    <script src="nutrition.js"></script>
+</body>
+</html>
