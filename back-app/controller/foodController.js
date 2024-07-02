@@ -1,37 +1,13 @@
 const Food = require('../models/food');
 const Glucose = require('../models/bloodSugar');
 
-exports.createFood = async (req, res) => {
-    try {
-        const { name, calories, carbohydrates, protein, fat } = req.body;
-
-        // Check if the food already exists
-        let food = await Food.findOne({ name });
-        if (food) {
-            return res.status(400).json({ msg: 'Food already exists' });
-        }
-
-        // Create a new food entry
-        food = new Food({
-            name,
-            calories,
-            carbohydrates,
-            protein,
-            fat
-        });
-
-        await food.save();
-        res.json(food);
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server Error');
-    }
-};
-
 exports.getFoodDetails = async (req, res) => {
     try {
         const { name } = req.params;
-        const food = await Food.findOne({ name });
+        //console.log(`Searching for food with name: ${name}`);
+        const food = await Food.findOne({ name: { $regex: new RegExp(name, 'i') } });
+        
+        //console.log(`Food found: ${food}`); 
 
         if (!food) {
             return res.status(404).json({ msg: 'Food not found' });
@@ -45,15 +21,23 @@ exports.getFoodDetails = async (req, res) => {
         }
 
         // Set the threshold value
-        const glucoseThreshold = 180; // Example threshold value
-        const carbohydrateThreshold = 30; // Example carbohydrate threshold
+        const glucoseThreshold = 180; 
+        const carbohydrateThreshold = 30; 
 
         let consumeMessage = "You can consume this food.";
         if (userGlucose.level > glucoseThreshold && food.carbohydrates > carbohydrateThreshold) {
             consumeMessage = "You should not consume this food due to high carbohydrate content.";
         }
 
-        res.json({ food, consumeMessage });
+        res.json({ 
+            food: {
+                //name: food.name,
+                calories: food.calories,
+                carbohydrates: food.carbohydrates,
+                protein: food.protein,
+                fat: food.fat
+            },
+            consumeMessage });
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Server Error');
