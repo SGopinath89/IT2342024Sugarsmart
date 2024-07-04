@@ -16,8 +16,17 @@ document.getElementById('nutritionForm').addEventListener('submit', async (e) =>
     const data = await response.json();
 
     if (response.ok) {
-        // Display food details and message
-        document.getElementById('foodDetails').innerText = `Nutrition: ${JSON.stringify(data.food)}, Message: ${data.consumeMessage}`;
+        const foodDetailsElement = document.getElementById('foodDetails');
+        foodDetailsElement.innerHTML = `
+            <p><strong>Food:</strong> ${data.food.name}</p>
+            <p><strong>Calories:</strong> ${data.food.calories}</p>
+            <p><strong>Carbohydrates:</strong> ${data.food.carbohydrates}</p>
+            <p><strong>Protein:</strong> ${data.food.protein}</p>
+            <p><strong>Fat:</strong> ${data.food.fat}</p>
+            <p><strong>Message:</strong> ${data.consumeMessage}</p>
+        `;
+
+        document.getElementById('foodName').value = '';
     } else {
         console.error('Error:', data.message || 'Failed to fetch food details');
     }

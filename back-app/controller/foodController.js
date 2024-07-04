@@ -28,7 +28,7 @@ exports.getFoodDetails = async (req, res) => {
 
         res.json({ 
             food: {
-                //name: food.name,
+                name: food.name,
                 calories: food.calories,
                 carbohydrates: food.carbohydrates,
                 protein: food.protein,

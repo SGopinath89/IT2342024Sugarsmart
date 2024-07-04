@@ -84,13 +84,26 @@ button.logout:hover {
     background-color: #c82333;
 }
 
-.results {
-    margin-top: 20px;
+#foodDetailsContainer {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.result-item {
-    background: #e9ecef;
-    padding: 10px;
-    border-radius: 5px;
+#foodDetailsContainer h2 {
+    font-size: 1.2rem;
     margin-bottom: 10px;
+    color: #333;
+}
+
+#foodDetails {
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+#foodDetails p {
+    margin: 5px 0;
 }
