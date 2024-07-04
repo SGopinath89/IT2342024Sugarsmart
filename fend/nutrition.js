@@ -9,16 +9,15 @@ document.getElementById('nutritionForm').addEventListener('submit', async (e) =>
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `' ${token} '`
         }
     });
-
+    
     const data = await response.json();
 
     if (response.ok) {
         // Display food details and message
-        console.log(data);
-        //document.getElementById('foodDetails').innerText = `Nutrition: ${JSON.stringify(data.food)}, Message: ${data.consumeMessage}`;
+        document.getElementById('foodDetails').innerText = `Nutrition: ${JSON.stringify(data.food)}, Message: ${data.consumeMessage}`;
     } else {
         console.error('Error:', data.message || 'Failed to fetch food details');
     }
