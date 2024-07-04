@@ -25,10 +25,47 @@ exports.getGlucoseRecords = async (req, res) => {
 };
 
 //update 
-
+exports.updateGlucoseRecord = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { date, glucose_level } = req.body;
+  
+      // Find the record by ID and update it
+      const updatedRecord = await Glucose.findByIdAndUpdate(
+        id,
+        { date, glucose_level },
+        { new: true } // To return the updated document
+      );
+  
+      if (!updatedRecord) {
+        return res.status(404).json({ msg: 'Glucose record not found' });
+      }
+  
+      res.json(updatedRecord);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  };
 
 //delete
-
+exports.deleteGlucoseRecord = async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+      // Find the record by ID and delete it
+      const deletedRecord = await Glucose.findByIdAndDelete(id);
+  
+      if (!deletedRecord) {
+        return res.status(404).json({ msg: 'Glucose record not found' });
+      }
+  
+      res.json({ msg: 'Glucose record deleted successfully' });
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  };
 
 //filter by year
 exports.filterGlucoseRecordsByYear = async (req, res) => {

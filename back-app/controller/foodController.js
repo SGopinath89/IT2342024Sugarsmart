@@ -1,18 +1,18 @@
+const jwt = require('jsonwebtoken');
 const Food = require('../models/food');
 const Glucose = require('../models/bloodSugar');
 
 exports.getFoodDetails = async (req, res) => {
     try {
         const { name } = req.params;
-        const food = await Food.findOne({ name: { $regex: new RegExp(name, 'i') } }); 
-
+        const food = await Food.findOne({ name: { $regex: new RegExp(name, 'i') }}); 
         if (!food) {
             return res.status(404).json({ msg: 'Food not found' });
         }
 
         // Get user's blood glucose level
         const userGlucose = await Glucose.findOne({ user: req.user.id }).sort({ date: -1 });
-
+        
         if (!userGlucose) {
             return res.status(404).json({ msg: 'Blood glucose data not found' });
         }

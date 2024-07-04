@@ -3,10 +3,13 @@ document.getElementById('nutritionForm').addEventListener('submit', async (e) =>
 
     const foodName = document.getElementById('foodName').value;
 
+    const token = localStorage.getItem('token');
+
     const response = await fetch(`http://localhost:5000/api/food/${foodName}`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     });
 
@@ -14,10 +17,10 @@ document.getElementById('nutritionForm').addEventListener('submit', async (e) =>
 
     if (response.ok) {
         // Display food details and message
-        document.getElementById('foodDetails').innerText = `Nutrition: ${JSON.stringify(data.food)}, Message: ${data.consumeMessage}`;
+        console.log(data);
+        //document.getElementById('foodDetails').innerText = `Nutrition: ${JSON.stringify(data.food)}, Message: ${data.consumeMessage}`;
     } else {
-        const errorMsg = await response.text();
-        alert(errorMsg);
+        console.error('Error:', data.message || 'Failed to fetch food details');
     }
 });
 
