@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('b5.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    background-color: #5d4fda;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    background-color: rgba(248, 249, 250, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin: 20px 0;
+}
+
+section h2 {
+    color: #116df7;
+    font-size: 2em;
+}
+
+section p, section ul {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+section ul {
+    padding-left: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #5d4fda;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    position: absolute;
+    top: 10px;
+    
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button.logout {
+    background-color: #dc3545;
+    right: 10px;
+}
+button.back{
+    left: 10px;
+}
+button.logout:hover {
+    background-color: #c82333;
+}
