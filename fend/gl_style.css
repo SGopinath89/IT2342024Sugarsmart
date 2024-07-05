@@ -1,0 +1,120 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  background: url('t1.jpeg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+header {
+  background-color: #5d4fda;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  margin: 20px;
+}
+
+.top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(248, 249, 250, 0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.hand-message {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  margin-right: 20px;
+}
+
+.hand-message .hand {
+  margin-right: 10px;
+}
+
+.blinking-message {
+  font-weight: bold;
+  animation: blinker 1s linear infinite;
+  color: red;
+}
+
+@keyframes blinker {
+  50% {
+      opacity: 0;
+  }
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.input-group label {
+  margin-right: 15px;
+}
+
+button {
+  background-color: #1E90FF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1C86EE;
+}
+
+.content-container {
+  display: flex;
+  gap: 20px;
+}
+
+.left-container, .right-container {
+  flex: 1;
+  background-color: rgba(248, 249, 250, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.filter-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+footer {
+  background-color: #5d4fda;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#chartContainer {
+  height: 300px;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glucose Tracker</title>
+    <link rel="stylesheet" href="gl_style.css">
+    <script src="glucose.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Glucose Tracker</h1>
+    </header>
+    <main>
+        <div class="top-container">
+            <div class="hand-message">
+              <span class="hand">&#x1F449;</span>
+              <span class="blinking-message">Enter your glucose level here!</span>
+            </div>
+            <div class="input-group">
+                <label for="date">Date</label>
+                <input id="date" type="date">
+            </div>
+            <div class="input-group">
+                <label for="glucoseLevel">Blood Glucose Level</label>
+                <input id="glucoseLevel" type="number">
+            </div>
+            <button id="addButton">Add</button>
+        </div>
+        <div class="content-container">
+            <div class="left-container">
+                <div class="filter-group">
+                    <input id="filterYear" type="number" placeholder="Enter Year">
+                    <button id="filterButton">Filter</button>
+                </div>
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Glucose Level (mg/dL)</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="right-container">
+                <div id="chartContainer">
+                    <!-- Chart will be rendered here -->
+                </div>
+                <button id="trackButton">Track It</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Glucose Tracker. All rights reserved.</p>
+    </footer>
+</body>
+</html>
