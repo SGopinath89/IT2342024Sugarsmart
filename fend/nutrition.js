@@ -23,8 +23,14 @@ document.getElementById('nutritionForm').addEventListener('submit', async (e) =>
             <p><strong>Carbohydrates:</strong> ${data.food.carbohydrates}</p>
             <p><strong>Protein:</strong> ${data.food.protein}</p>
             <p><strong>Fat:</strong> ${data.food.fat}</p>
-            <p><strong>Message:</strong> ${data.consumeMessage}</p>
         `;
+
+        if (data.consumeMessage) {
+            document.getElementById('foodDetails').innerHTML += `
+                <p>Glucose Level: ${data.glucoseLevel}</p>
+                <p>${data.consumeMessage}</p>
+            `;
+        }
 
         document.getElementById('foodName').value = '';
     } else {

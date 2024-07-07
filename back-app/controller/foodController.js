@@ -10,31 +10,36 @@ exports.getFoodDetails = async (req, res) => {
             return res.status(404).json({ msg: 'Food not found' });
         }
 
-        // Get user's blood glucose level
         const userGlucose = await Glucose.findOne({ user: req.user.id }).sort({ date: -1 });
-        
-        if (!userGlucose) {
-            return res.status(404).json({ msg: 'Blood glucose data not found' });
+
+        const foodDetails = {
+            name: food.name,
+            calories: food.calories,
+            carbohydrates: food.carbohydrates,
+            protein: food.protein,
+            fat: food.fat
+        };
+
+        if (userGlucose) {
+            const glucoseThreshold = 180; 
+            const carbohydrateThreshold = 30; 
+
+            let consumeMessage = "You can consume this food.";
+            if (userGlucose.glucose_level > glucoseThreshold && food.carbohydrates > carbohydrateThreshold) {
+                consumeMessage = "You should not consume this food due to high carbohydrate content.";
+            }
+
+            res.json({ 
+                food: foodDetails,
+                glucoseLevel: userGlucose.glucose_level,
+                consumeMessage 
+            });
+        } else {
+            // If no glucose level data is found, return only the food details
+            res.json({ 
+                food: foodDetails
+            });
         }
-
-        // Set the threshold value
-        const glucoseThreshold = 180; 
-        const carbohydrateThreshold = 30; 
-
-        let consumeMessage = "You can consume this food.";
-        if (userGlucose.level > glucoseThreshold && food.carbohydrates > carbohydrateThreshold) {
-            consumeMessage = "You should not consume this food due to high carbohydrate content.";
-        }
-
-        res.json({ 
-            food: {
-                name: food.name,
-                calories: food.calories,
-                carbohydrates: food.carbohydrates,
-                protein: food.protein,
-                fat: food.fat
-            },
-            consumeMessage });
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Server Error');
