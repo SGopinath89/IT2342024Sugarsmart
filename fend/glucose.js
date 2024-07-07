@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error('Failed to update record');
             }
+            await deleteRecord(id);
         } catch (error) {
             console.error(error.message);
             alert('Error updating record');
