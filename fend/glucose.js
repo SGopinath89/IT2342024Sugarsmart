@@ -162,6 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Authorization': `Bearer ${token}`
                 }
             });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to filter records');
+            }
+    
             const records = await response.json();
             displayRecords(records);
         } catch (error) {
@@ -186,18 +192,18 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Error tracking records');
         }
     }
-
+    
     function displayChart(records) {
         const ctx = document.getElementById('chartContainer').getContext('2d');
-        const labels = records.map(record => `Month ${record._id}`);
-        const data = records.map(record => record.averageLevel);
-
+        const labels = records.map(record => record.month);
+        const data = records.map(record => record.glucose_level);
+    
         new Chart(ctx, {
             type: 'line',
             data: {
                 labels,
                 datasets: [{
-                    label: 'Average Glucose Level',
+                    label: 'Glucose Level',
                     data,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2,
@@ -207,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             options: {
                 scales: {
                     x: { title: { display: true, text: 'Month' } },
-                    y: { title: { display: true, text: 'Average Glucose Level (mg/dL)' } }
+                    y: { title: { display: true, text: 'Glucose Level (mg/dL)' } }
                 }
             }
         });

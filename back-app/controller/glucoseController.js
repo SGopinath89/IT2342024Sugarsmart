@@ -71,23 +71,16 @@ exports.deleteGlucoseRecord = async (req, res) => {
 exports.filterGlucoseRecordsByYear = async (req, res) => {
   try {
       const { year } = req.params;
-      const records = await Glucose.aggregate([
-          {
-              $match: {
-                  user: req.user.id,
-                  date: { $gte: new Date(`${year}-01-01`), $lt: new Date(`${year}-12-31`) }
-              }
-          },
-          {
-              $group: {
-                  _id: { $month: "$date" },
-                  averageLevel: { $avg: "$glucose_level" }
-              }
-          }
-      ]);
+      const startDate = new Date(`${year}-01-01T00:00:00Z`);
+      const endDate = new Date(`${year}-12-31T23:59:59Z`);
+      const records = await Glucose.find({
+        user: req.user.id,
+        date: { $gte: startDate, $lt: endDate }
+      });
+      console.log(`Records found: ${records.length}`);
       res.json(records);
   } catch (error) {
       console.error(error.message);
-      res.status(500).send('Server Error');
+      res.status(500).json('Server Error');
   }
 };
